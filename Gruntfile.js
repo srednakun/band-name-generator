@@ -1,11 +1,6 @@
-'use strict';
-
 module.exports = function(grunt) {
-  grunt.loadNpmTasks("grunt-contrib-jshint");
-  grunt.loadNpmTasks("grunt-jscs");
 
-  var srcFiles = ["app/**/*.js", "lib/**/*.js", "server.js"];
-
+  var srcFiles = ["lab1.js"];
   grunt.initConfig({
     jshint: {
       files: srcFiles,
@@ -17,22 +12,23 @@ module.exports = function(grunt) {
         undef: true,
         unused: true,
         indent: 2,
-        node: true,
-        globals: {
-          $: true
-        }
+        node: true
       }
     },
     jscs: {
       src: srcFiles,
       options: {
         preset: "airbnb",
-        requireDotNotation: null,
-        disallowMultipleVarDecl: null,
-        requireMultipleVarDecl: null
+        requireMultipleVarDecl: null,
+        validateQuoteMarks: true,
+        disallowMultipleVarDecl: true
       }
     }
   });
 
+  grunt.loadNpmTasks("grunt-contrib-jshint");
+  grunt.loadNpmTasks("grunt-jscs");
+
   grunt.registerTask("default", [ "jshint", "jscs"]);
+
 };
